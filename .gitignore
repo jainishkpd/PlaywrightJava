@@ -48,3 +48,5 @@ test-output/
 *.log
 /.github
 /src/main/resources/Files/selenium-java-4.40.0.jar
+/screenshots/
+videos

@@ -1,11 +1,12 @@
 import com.microsoft.playwright.*;
 
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
 public class HandlingKeyboardEvents {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
 
         Playwright playwright = Playwright.create();
         List<String> argList = new ArrayList<>();
@@ -17,40 +18,23 @@ public class HandlingKeyboardEvents {
 
         //page.locator("#login-username").type("abcd@gmail.com");
         page.locator("#login-username").type("abcd@gmail.com", new Locator.TypeOptions().setDelay(100));
+        page.locator("#login-username").screenshot(new Locator.ScreenshotOptions().setPath(Paths.get("./screenshots/LoginUserNameLocator.png")));
+        Thread.sleep(1000);
         page.keyboard().press("Enter");
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        Thread.sleep(1000);
         page.goBack();
         page.keyboard().press("Control+A");
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        Thread.sleep(1000);
         page.keyboard().press("Control+X");
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        Thread.sleep(1000);
         page.keyboard().press("Control+V");
         page.keyboard().down("Shift");
-
         for (int i = 0; i < 3; i++) {
             page.keyboard().press("ArrowLeft");
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+            Thread.sleep(1000);
         }
-
         page.close();
         browserContext.close();
         playwright.close();
-
     }
 }

@@ -1,5 +1,6 @@
 import com.microsoft.playwright.*;
 
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,6 +14,8 @@ public class HandlingBasicAuth {
         Page page = browserContext.newPage();
         page.navigate("http://the-internet.herokuapp.com/basic_auth");
         System.out.println("Page title: " + page.title());
+
+        page.screenshot(new Page.ScreenshotOptions().setPath(Paths.get("./screenshots/BasicAuth.png")));
 
         page.close();
         browserContext.close();

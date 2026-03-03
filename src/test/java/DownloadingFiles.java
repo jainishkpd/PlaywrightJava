@@ -11,7 +11,7 @@ public class DownloadingFiles {
         Playwright playwright = Playwright.create();
         List<String> argList = new ArrayList<>();
         argList.add("--start-maximized");
-        BrowserContext browserContext = playwright.chromium().launch(new BrowserType.LaunchOptions().setArgs(argList).setHeadless(false)).newContext(new Browser.NewContextOptions().setViewportSize(null));
+        BrowserContext browserContext = playwright.chromium().launch(new BrowserType.LaunchOptions().setArgs(argList).setHeadless(false)).newContext(new Browser.NewContextOptions().setViewportSize(null).setRecordVideoDir(Paths.get("videos/")));
         Page page = browserContext.newPage();
         page.navigate("https://www.selenium.dev/downloads/");
         System.out.println("Page title: " + page.title());
